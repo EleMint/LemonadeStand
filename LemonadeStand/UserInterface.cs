@@ -31,21 +31,25 @@ namespace LemonadeStand
             }
             return 7;
         }
-        public void AskToBuyProduct(Player player)
+        public void AskToBuyProduct(Player player, Store store)
         {
             Console.WriteLine("Is There Anything You'd Like To Buy?");
             string userAnswer = Console.ReadLine().ToLower();
             switch(userAnswer)
             {
                 case "yes":
-                    player.BuyProduct();
+                    store.BuyProduct(player);
                     break;
                 case "no":
                     break;
                 default:
-                    AskToBuyProduct(player);
+                    AskToBuyProduct(player, store);
                     break;
             }
+        }
+        public void AskForRecipe()
+        {
+
         }
     }
 }

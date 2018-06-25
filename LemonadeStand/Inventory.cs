@@ -7,12 +7,6 @@ using System.Threading.Tasks;
 namespace LemonadeStand
 {
     class Inventory
-    {// TODO: Inventory
-        // Member Variables (HAS A)
-
-        // Constructor
-
-        // Member Methods (CAN DO)
-
+    {
     }
 }
