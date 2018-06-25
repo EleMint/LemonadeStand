@@ -12,28 +12,47 @@ namespace LemonadeStand
         public Player player;
         UserInterface userInterface;
         Store store;
-        private int gameLength;
+        public int gameLength;
+        public int currentDay;
         // Constructor
         public Game()
         {
             player = new Player();
             userInterface = new UserInterface();
             store = new Store();
+            currentDay = 0;
         }
 
         // Member Methods (CAN DO)
         public void RunGame()
         {
 
+            
+            userInterface.ShowIntroduction();
             gameLength = userInterface.AskGameLength();
-            Console.WriteLine("Player Money: $" + player.money);
-            Console.WriteLine("Player Cups: " + player.cups);
-            userInterface.AskToBuyProduct(player, store);
-            Console.WriteLine("Player Money: $" + player.money);
-            Console.WriteLine("Player Cups: " + player.cups);
-            Console.WriteLine("Player Money: $" + player.money);
+            do
+            {
+                currentDay++;
+                userInterface.ShowCurrentDay(currentDay);
+                NewDay();
+                string userInput;
+                do
+                {
+                    userInput = userInterface.AskToBuyProduct(player, store);
+                }
+                while (userInput == "yes");
+                
+                
+            }
+            while (currentDay <= gameLength);
+            Console.WriteLine("end of program");
             Console.ReadLine();
+            Environment.Exit(0);
 
+        }
+        public void NewDay()
+        {
+            Day newDay = new Day();
         }
     }
 }

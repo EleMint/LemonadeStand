@@ -22,18 +22,23 @@ namespace LemonadeStand
             switch (item)
             {
                 case "cups":
-                    Console.WriteLine("How Many Cups Would You Like To Buy?");
-                    int amount = int.Parse(Console.ReadLine());
-                    bool isValid = PricePerItem(amount, player);
-                    if(isValid)
+                    bool isValid;
+                    do
                     {
-                        player.cups += amount;
+                        Console.WriteLine("How Many Cups Would You Like To Buy?");
+                        int amount = int.Parse(Console.ReadLine());
+                        isValid = PricePerItem(amount, player);
+                        if (isValid)
+                        {
+                            player.cups += amount;
+                        }
+                        else
+                        {
+                            Console.WriteLine("You Do Not Have Enough Money");
+                        }
+
                     }
-                    else
-                    {
-                        Console.WriteLine("You Do Not Have Enough Money");
-                        BuyProduct(player);
-                    }
+                    while (!isValid);
                     break;
                 case "lemons":
                     Console.WriteLine("How Many Lemons Would You Like To Buy?");
