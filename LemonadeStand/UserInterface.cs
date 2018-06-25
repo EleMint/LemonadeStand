@@ -37,8 +37,7 @@ namespace LemonadeStand
         }
         public string AskToBuyProduct(Player player, Store store)
         {
-            player.ShowInventory();
-            Console.WriteLine("Is There Anything You'd Like To Buy?");
+            Console.WriteLine("\r\nIs There Anything You'd Like To Buy?");
             string userAnswer = Console.ReadLine().ToLower();
             switch(userAnswer)
             {
@@ -54,11 +53,16 @@ namespace LemonadeStand
         }
         public void AskForRecipe()
         {
-
+            Console.WriteLine("\r\nHow Many ");
         }
-        public void ShowCurrentDay(int currentDay)
+        public void ShowCurrentDay(int currentDay, Player player)
         {
             Console.WriteLine("\r\nDay: {0}", currentDay);
+            player.ShowInventory();
+        }
+        public void ShowEndOfDayTotal()
+        {
+
         }
     }
 }

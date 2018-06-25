@@ -17,7 +17,7 @@ namespace LemonadeStand
         // Member Methods (CAN DO)
         public void BuyProduct(Player player)
         {
-            Console.WriteLine("Prices: Amount < 25 --> $0.07 / Item, 25 <= Amount < 75 --> $0.04 / Item, 75 <= Amount --> $0.03 / Item.\r\nWhat Would You Like To Purchace? (Cups, Lemons, Sugar, Ice)");
+            Console.WriteLine("\r\nPrices: Amount < 25 --> $0.07 / Item, 25 <= Amount < 75 --> $0.04 / Item, 75 <= Amount --> $0.03 / Item.\r\nWhat Would You Like To Purchace? (Cups, Lemons, Sugar, Ice)");
             string item = Console.ReadLine().ToLower();
             switch (item)
             {
@@ -25,7 +25,7 @@ namespace LemonadeStand
                     bool isValid;
                     do
                     {
-                        Console.WriteLine("How Many Cups Would You Like To Buy?");
+                        Console.WriteLine("\r\nHow Many Cups Would You Like To Buy?");
                         int amount = int.Parse(Console.ReadLine());
                         isValid = PricePerItem(amount, player);
                         if (isValid)
@@ -34,14 +34,14 @@ namespace LemonadeStand
                         }
                         else
                         {
-                            Console.WriteLine("You Do Not Have Enough Money");
+                            Console.WriteLine("\r\nYou Do Not Have Enough Money");
                         }
 
                     }
                     while (!isValid);
                     break;
                 case "lemons":
-                    Console.WriteLine("How Many Lemons Would You Like To Buy?");
+                    Console.WriteLine("\r\nHow Many Lemons Would You Like To Buy?");
                     int amount2 = int.Parse(Console.ReadLine());
                     bool isValid2 = PricePerItem(amount2, player);
                     if (isValid2)
@@ -50,12 +50,12 @@ namespace LemonadeStand
                     }
                     else
                     {
-                        Console.WriteLine("You Do Not Have Enough Money");
+                        Console.WriteLine("\r\nYou Do Not Have Enough Money");
                         BuyProduct(player);
                     }
                     break;
                 case "sugar":
-                    Console.WriteLine("How Much Sugar Would You Like To Buy?");
+                    Console.WriteLine("\r\nHow Much Sugar Would You Like To Buy?");
                     int amount3 = int.Parse(Console.ReadLine());
                     bool isValid3 = PricePerItem(amount3, player);
                     if (isValid3)
@@ -64,12 +64,12 @@ namespace LemonadeStand
                     }
                     else
                     {
-                        Console.WriteLine("You Do Not Have Enough Money");
+                        Console.WriteLine("\r\nYou Do Not Have Enough Money");
                         BuyProduct(player);
                     }
                     break;
                 case "ice":
-                    Console.WriteLine("How Much Ice Would You Like To Buy?");
+                    Console.WriteLine("\r\nHow Much Ice Would You Like To Buy?");
                     int amount4 = int.Parse(Console.ReadLine());
                     bool isValid4 = PricePerItem(amount4, player);
                     if (isValid4)
@@ -78,7 +78,7 @@ namespace LemonadeStand
                     }
                     else
                     {
-                        Console.WriteLine("You Do Not Have Enough Money");
+                        Console.WriteLine("\r\nYou Do Not Have Enough Money");
                         BuyProduct(player);
                     }
                     break;

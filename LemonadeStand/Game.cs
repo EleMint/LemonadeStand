@@ -26,14 +26,12 @@ namespace LemonadeStand
         // Member Methods (CAN DO)
         public void RunGame()
         {
-
-            
             userInterface.ShowIntroduction();
             gameLength = userInterface.AskGameLength();
             do
             {
                 currentDay++;
-                userInterface.ShowCurrentDay(currentDay);
+                userInterface.ShowCurrentDay(currentDay,player);
                 NewDay();
                 string userInput;
                 do
@@ -41,10 +39,10 @@ namespace LemonadeStand
                     userInput = userInterface.AskToBuyProduct(player, store);
                 }
                 while (userInput == "yes");
-                
-                
+
+                userInterface.ShowEndOfDayTotal();
             }
-            while (currentDay <= gameLength);
+            while (currentDay < gameLength);
             Console.WriteLine("end of program");
             Console.ReadLine();
             Environment.Exit(0);
