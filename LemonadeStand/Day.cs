@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Inventory
-    {// TODO: Inventory
+    class Day
+    {
         // Member Variables (HAS A)
-
+        Weather weather;
         // Constructor
-
+        public Day()
+        {
+            weather = new Weather();
+        }
         // Member Methods (CAN DO)
-
     }
 }

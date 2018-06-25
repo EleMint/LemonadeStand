@@ -9,9 +9,15 @@ namespace LemonadeStand
     class Weather
     {
         // Member Variables (HAS A)
-
+        private double chanceOfRain;
+        private double chanceOfSun;
+        private double chanceOfClouds;
+        private double temperature;
         // Constructor
+        public Weather()
+        {
 
+        }
         // Member Methods (CAN DO)
 
     }
