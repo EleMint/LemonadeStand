@@ -34,7 +34,7 @@ namespace LemonadeStand
         }
         public void InputRecipe(int inputLemons, int inputSugar, int inputIce)
         {
-            
+            recipe = new Recipe(inputLemons, inputSugar, inputIce);
         }
 
     }

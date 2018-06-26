@@ -55,27 +55,27 @@ namespace LemonadeStand
         }
         public void AskForRecipe(Player player)
         {
-            Console.WriteLine("\r\nTime To Input Your Lemonade Recipe.\r\nHow Many Lemons Would You Like To Use?");
+            Console.WriteLine("\r\nTime To Input Your Lemonade Recipe.\r\nHow Many Lemons Would You Like To Use? You Currently Have: {0}", player.lemons);
             int inputLemons = int.Parse(Console.ReadLine().Trim());
-            while(inputLemons >= player.lemons)            
+            while(inputLemons > player.lemons)            
             {
-                Console.WriteLine("You Do Not Have {0} Lemons, Please Enter An Amount Less Than Or Equal To How Many Lemons You Currently Have.", player.lemons);
+                Console.WriteLine("You Do Not Have {0} Lemons, Please Enter An Amount Less Than Or Equal To How Many Lemons You Currently Have.", inputLemons);
                 Console.WriteLine("How Many Lemons Would You Like To Use?");
                 inputLemons = int.Parse(Console.ReadLine().Trim());
             }
-            Console.WriteLine("\r\nHow Much Sugar Would You Like To Use?");
+            Console.WriteLine("\r\nHow Much Sugar Would You Like To Use? You Currently Have: {0}", player.sugar);
             int inputSugar = int.Parse(Console.ReadLine().Trim());
-            while(inputSugar >= player.sugar)            
+            while(inputSugar > player.sugar)            
             {
-                Console.WriteLine("You Do Not Have {0} Sugar, Please Enter An Amount Less Than Or Equal To How Many Sugar You Currently Have.", player.sugar);
+                Console.WriteLine("You Do Not Have {0} Sugar, Please Enter An Amount Less Than Or Equal To How Many Sugar You Currently Have.", inputSugar);
                 Console.WriteLine("How Much Sugar Would You Like To Use?");
                 inputSugar = int.Parse(Console.ReadLine().Trim());
             }
-            Console.WriteLine("\r\nHow Many Ice Cubes Would You Like To Use Per Cup?");
+            Console.WriteLine("\r\nHow Many Ice Cubes Would You Like To Use Per Cup? YOu Currently Have: {0}", player.ice);
             int inputIce = int.Parse(Console.ReadLine().Trim());
-            while (inputIce >= player.ice)
+            while (inputIce > player.ice)
             {
-                Console.WriteLine("You Do Not Have {0} Ice, Please Enter An Amount Less Than Or Equal To How Much Ice You Currently Have.", player.ice);
+                Console.WriteLine("You Do Not Have {0} Ice, Please Enter An Amount Less Than Or Equal To How Much Ice You Currently Have.", inputIce);
                 Console.WriteLine("How Much Ice Would You Like To Use?");
                 inputIce = int.Parse(Console.ReadLine().Trim());
             }
@@ -90,11 +90,11 @@ namespace LemonadeStand
         {
             if(player.moneyDayBegin > player.moneyDayEnd)
             {
-                Console.WriteLine("\r\nYour Daily Loss Is: {0}", player.moneyDayBegin - player.moneyDayEnd);
+                Console.WriteLine("\r\nToday You Lost: ${0}", (player.moneyDayBegin - player.moneyDayEnd));
             }
             else
             {
-                Console.WriteLine("\r\nYour Daily Profit Is: {0}", player.moneyDayEnd - player.moneyDayBegin);
+                Console.WriteLine("\r\nToday You Made: ${0}", (player.moneyDayEnd - player.moneyDayBegin));
             }
         }
         public void AskToPlayAgain()
@@ -109,12 +109,12 @@ namespace LemonadeStand
                     newGame.RunGame();
                     break;
                 case "no":
-                    Console.WriteLine("Thanks For Playing!");
+                    Console.WriteLine("\r\nThanks For Playing!");
                     Console.ReadLine();
                     Environment.Exit(0);
                     break;
                 case "quit":
-                    Console.WriteLine("Thanks For Playing!");
+                    Console.WriteLine("\r\nThanks For Playing!");
                     Console.ReadLine();
                     Environment.Exit(0);
                     break;

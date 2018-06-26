@@ -26,7 +26,7 @@ namespace LemonadeStand
         // Member Methods (CAN DO)
         public void RunGame()
         {
-            
+            userInterface.AskForRecipe(player);
             gameLength = userInterface.AskGameLength();
             do
             {
