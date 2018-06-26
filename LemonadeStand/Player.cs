@@ -28,10 +28,12 @@ namespace LemonadeStand
             ice = 0;
         }
         // Member Methods (CAN DO)
+
         public void ShowInventory()
         {
             Console.WriteLine("\r\nYour Inventory:\r\nMoney: {0}\r\nCups: {1}\r\nLemons: {2}\r\nSugar: {3}\r\nIce: {4}", money, cups, lemons, sugar, ice);
         }
+
         public void InputRecipe(int inputLemons, int inputSugar, int inputIce)
         {
             recipe = new Recipe(inputLemons, inputSugar, inputIce);

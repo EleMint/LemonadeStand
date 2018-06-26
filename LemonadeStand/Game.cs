@@ -50,6 +50,7 @@ namespace LemonadeStand
             userInterface.AskToPlayAgain();
 
         }
+
         public void NewDay(Player player)
         {
             Day newDay = new Day(player);
