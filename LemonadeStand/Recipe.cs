@@ -20,9 +20,11 @@ namespace LemonadeStand
             this.ice = ice;
         }
         // Member Methods (CAN DO)
-        public void CalculateDailyUsage()
+        public void CalculateDailyItemUsage(Player player, int lemons, int sugar, int ice)
         {
-
+            player.lemons -= lemons;
+            player.sugar -= sugar;
+            player.ice -= ice;
         }
     }
 }

@@ -18,7 +18,7 @@ namespace LemonadeStand
         // Member Methods (CAN DO)
         public void BuyLemonade()
         {
-            // TODO: Create BuyLemonade() Method
+            
         }
     }
 }

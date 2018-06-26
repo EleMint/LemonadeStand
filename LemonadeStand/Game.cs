@@ -26,34 +26,49 @@ namespace LemonadeStand
         // Member Methods (CAN DO)
         public void RunGame()
         {
-            userInterface.AskForRecipe(player);
+            AskForInstructions();
             gameLength = userInterface.AskGameLength();
             do
             {
-                currentDay++;
-                userInterface.ShowCurrentDay(currentDay, player);
-                NewDay(player);
-                string userInput;
-                do
-                {
-                    player.ShowInventory();
-                    userInput = userInterface.AskToBuyProduct(player, store);
-                }
-                while (userInput == "yes");
-
-                userInterface.ShowEndOfDayTotal(player);
+                RunDaily();
             }
             while (currentDay < gameLength);
-
-
-
             userInterface.AskToPlayAgain();
 
         }
-
-        public void NewDay(Player player)
+        public void RunDaily()
         {
+            currentDay++;
+            userInterface.ShowCurrentDay(currentDay, player);
             Day newDay = new Day(player);
+            newDay.DailyWeatherReport();
+            string userInput;
+            do
+            {
+                userInput = AskToBuyProduct();
+            }
+            while (userInput == "yes");
+            userInterface.AskForRecipe(player);
+            userInterface.ShowEndOfDayTotal(player);
         }
+        public string AskToBuyProduct()
+        {
+            return userInterface.AskToBuyProduct(player, store);
+        }
+        public void AskForInstructions()
+        {
+            Console.WriteLine("\r\nWould You Like To Read The Instructions?");
+            string userAnswer = Console.ReadLine().ToLower().Trim();
+            switch (userAnswer)
+            {
+                case "yes":
+                    userInterface.ShowInstructions();
+                    break;
+                default:
+                    break;
+            }
+
+        }
+        
     }
 }

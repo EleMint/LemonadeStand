@@ -11,16 +11,16 @@ namespace LemonadeStand
         // Member Variables (HAS A)
         readonly Weather weather;
         readonly Customer customer;
+        Random random = new Random();
         // Constructor
         public Day(Player player)
         {
-            weather = new Weather();
-            Random random = new Random();
-            double customerBuyRate = random.Next(1, 100);
-            customer = new Customer(CalculateCustomerBuyRate());
-            player.ice = 0;
             player.moneyDayBegin = player.money;
             player.moneyDayEnd = 0;
+            player.ice = 0;
+            weather = new Weather();
+            double customerBuyRate = random.Next(1, 100);
+            customer = new Customer(CalculateCustomerBuyRate());
             int randomNum = random.Next(1, 7);
             if(randomNum == 3)
             {
@@ -48,6 +48,11 @@ namespace LemonadeStand
             }
             result = buyRate;
             return result;
+
+        }
+        public void DailyWeatherReport()
+        {
+            Console.WriteLine("\r\nCurrent Weather Forcast:\r\nForcasted Temperature - {0}\r\nForcasted Sky Condition - {1}", weather.temperature, weather.skyCondition);
 
         }
     }
