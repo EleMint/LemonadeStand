@@ -48,10 +48,39 @@ namespace LemonadeStand
                     return "yes";
             }
         }
+        public void DailyWeatherReport(Game game, Weather weather)
+        {
+            Console.WriteLine("\r\nDay {0} Current Weather Forcast.\r\nForcasted Temperature: {1}\r\nForcasted Sky Condition: {2}", game.currentDay, weather.temperature, weather.skyCondition);
+
+        }
         public void AskForRecipe(Player player)
         {
-            Console.WriteLine("\r\nTime To Input Your Lemonade Recipe.");
-            player.InputRecipe();
+            Console.WriteLine("\r\nTime To Input Your Lemonade Recipe.\r\nHow Many Lemons Would You Like To Use?");
+            int inputLemons = int.Parse(Console.ReadLine().Trim());
+            while(inputLemons >= player.lemons)            
+            {
+                Console.WriteLine("You Do Not Have {0} Lemons, Please Enter An Amount Less Than Or Equal To How Many Lemons You Currently Have.", player.lemons);
+                Console.WriteLine("How Many Lemons Would You Like To Use?");
+                inputLemons = int.Parse(Console.ReadLine().Trim());
+            }
+            Console.WriteLine("\r\nHow Much Sugar Would You Like To Use?");
+            int inputSugar = int.Parse(Console.ReadLine().Trim());
+            while(inputSugar >= player.sugar)            
+            {
+                Console.WriteLine("You Do Not Have {0} Sugar, Please Enter An Amount Less Than Or Equal To How Many Sugar You Currently Have.", player.sugar);
+                Console.WriteLine("How Much Sugar Would You Like To Use?");
+                inputSugar = int.Parse(Console.ReadLine().Trim());
+            }
+            Console.WriteLine("\r\nHow Many Ice Cubes Would You Like To Use Per Cup?");
+            int inputIce = int.Parse(Console.ReadLine().Trim());
+            while (inputIce >= player.ice)
+            {
+                Console.WriteLine("You Do Not Have {0} Ice, Please Enter An Amount Less Than Or Equal To How Much Ice You Currently Have.", player.ice);
+                Console.WriteLine("How Much Ice Would You Like To Use?");
+                inputIce = int.Parse(Console.ReadLine().Trim());
+            }
+            player.InputRecipe(inputLemons, inputSugar, inputIce);
+            
         }
         public void ShowCurrentDay(int currentDay, Player player)
         {

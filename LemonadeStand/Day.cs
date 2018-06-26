@@ -9,15 +9,15 @@ namespace LemonadeStand
     class Day
     {
         // Member Variables (HAS A)
-        Weather weather;
-        Customer customer;
+        readonly Weather weather;
+        readonly Customer customer;
         // Constructor
         public Day(Player player)
         {
             weather = new Weather();
             Random random = new Random();
             double customerBuyRate = random.Next(1, 100);
-            customer = new Customer(customerBuyRate);
+            customer = new Customer(CalculateCustomerBuyRate());
             player.ice = 0;
             player.moneyDayBegin = player.money;
             player.moneyDayEnd = 0;
@@ -27,6 +27,28 @@ namespace LemonadeStand
                 player.lemons -= (player.lemons / 10);
             }
             
+        }
+        public double CalculateCustomerBuyRate()
+        {
+            double buyRate = 0;
+            double result;
+
+            buyRate += weather.temperature / 1.5;
+            if(weather.clouds)
+            {
+                buyRate -= 5;
+            }
+            if(weather.rain)
+            {
+                buyRate -= 10;
+            }
+            //if()
+            {
+
+            }
+            result = buyRate;
+            return result;
+
         }
     }
 }

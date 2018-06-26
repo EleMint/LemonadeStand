@@ -12,6 +12,7 @@ namespace LemonadeStand
         public double chanceOfRain;
         public double chanceOfClouds;
         public double temperature;
+        public string skyCondition;
         public bool clouds;
         public bool rain;
         // Constructor
@@ -26,21 +27,25 @@ namespace LemonadeStand
             if(chanceOfClouds > 0.5)
             {
                 clouds = true;
+                skyCondition += "Clouds ";
             }
             else
             {
                 clouds = false;
+                skyCondition += "Clear Skies ";
             }
             chanceOfRain = randomNum2 / 100;
-            if(chanceOfRain > 0.5)
+            if(chanceOfRain > 0.5 && clouds)
             {
                 rain = true;
+                skyCondition += "Rain ";
             }
             else
             {
                 rain = false;
+                skyCondition += "No Rain ";
             }
-
+            
         }
     }
 }
