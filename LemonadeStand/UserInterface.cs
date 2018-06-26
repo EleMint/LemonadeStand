@@ -8,14 +8,11 @@ namespace LemonadeStand
 {
     class UserInterface
     {
-        // Member Variables (HAS A)
-
         // Constructor
         public UserInterface()
         {
-
+            ShowIntroduction();
         }
-
         // Member Methods (CAN DO)
         public void ShowIntroduction()
         {
@@ -51,9 +48,10 @@ namespace LemonadeStand
                     return "yes";
             }
         }
-        public void AskForRecipe()
+        public void AskForRecipe(Player player)
         {
-            Console.WriteLine("\r\nHow Many ");
+            Console.WriteLine("\r\nTime To Input Your Lemonade Recipe.");
+            player.InputRecipe();
         }
         public void ShowCurrentDay(int currentDay, Player player)
         {
@@ -63,11 +61,37 @@ namespace LemonadeStand
         {
             if(player.moneyDayBegin > player.moneyDayEnd)
             {
-                Console.WriteLine("Your Daily Loss Is: {0}", player.moneyDayBegin - player.moneyDayEnd);
+                Console.WriteLine("\r\nYour Daily Loss Is: {0}", player.moneyDayBegin - player.moneyDayEnd);
             }
             else
             {
-                Console.WriteLine("Your Daily Profit Is: {0}", player.moneyDayEnd - player.moneyDayBegin);
+                Console.WriteLine("\r\nYour Daily Profit Is: {0}", player.moneyDayEnd - player.moneyDayBegin);
+            }
+        }
+        public void AskToPlayAgain()
+        {
+            Console.WriteLine("\r\nWould You Like To Play Again?");
+            string userInput = Console.ReadLine().ToLower().Trim();
+            switch (userInput)
+            {
+                case "yes":
+                    Console.Clear();
+                    Game newGame = new Game();
+                    newGame.RunGame();
+                    break;
+                case "no":
+                    Console.WriteLine("Thanks For Playing!");
+                    Console.ReadLine();
+                    Environment.Exit(0);
+                    break;
+                case "quit":
+                    Console.WriteLine("Thanks For Playing!");
+                    Console.ReadLine();
+                    Environment.Exit(0);
+                    break;
+                default:
+                    AskToPlayAgain();
+                    break;
             }
         }
     }

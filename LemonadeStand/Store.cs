@@ -8,7 +8,6 @@ namespace LemonadeStand
 {
     class Store
     {
-        // Member Variables (HAS A)
         // Constructor
         public Store()
         {
@@ -25,7 +24,7 @@ namespace LemonadeStand
                     bool isValid;
                     do
                     {
-                        Console.WriteLine("\r\nHow Many Cups Would You Like To Buy?");
+                        Console.WriteLine("\r\nHow Many Cups Would You Like To Buy? You have {0} Cups And ${1}.", player.cups, player.money);
                         int amount = int.Parse(Console.ReadLine());
                         isValid = PricePerItem(amount, player);
                         if (isValid)
@@ -41,7 +40,7 @@ namespace LemonadeStand
                     while (!isValid);
                     break;
                 case "lemons":
-                    Console.WriteLine("\r\nHow Many Lemons Would You Like To Buy?");
+                    Console.WriteLine("\r\nHow Many Lemons Would You Like To Buy? You have {0} Lemons And ${1}.", player.lemons, player.money);
                     int amount2 = int.Parse(Console.ReadLine());
                     bool isValid2 = PricePerItem(amount2, player);
                     if (isValid2)
@@ -55,7 +54,7 @@ namespace LemonadeStand
                     }
                     break;
                 case "sugar":
-                    Console.WriteLine("\r\nHow Much Sugar Would You Like To Buy?");
+                    Console.WriteLine("\r\nHow Much Sugar Would You Like To Buy? You have {0} Sugar And ${1}.", player.sugar, player.money);
                     int amount3 = int.Parse(Console.ReadLine());
                     bool isValid3 = PricePerItem(amount3, player);
                     if (isValid3)
@@ -69,7 +68,7 @@ namespace LemonadeStand
                     }
                     break;
                 case "ice":
-                    Console.WriteLine("\r\nHow Much Ice Would You Like To Buy?");
+                    Console.WriteLine("\r\nHow Much Ice Would You Like To Buy? You have {0} Ice And ${1}.", player.ice, player.money);
                     int amount4 = int.Parse(Console.ReadLine());
                     bool isValid4 = PricePerItem(amount4, player);
                     if (isValid4)

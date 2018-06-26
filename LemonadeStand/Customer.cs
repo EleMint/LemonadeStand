@@ -9,13 +9,16 @@ namespace LemonadeStand
     class Customer
     {
         // Member Variables (HAS A)
-        private double buyPercentage;
+        private double buyRate;
         // Constructor
-        public Customer(double buyPercentage)
+        public Customer(double buyRate)
         {
-            this.buyPercentage = buyPercentage;
+            this.buyRate = buyRate;
         }
         // Member Methods (CAN DO)
-
+        public void BuyLemonade()
+        {
+            // TODO: Create BuyLemonade() Method
+        }
     }
 }
