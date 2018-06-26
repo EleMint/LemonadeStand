@@ -32,7 +32,7 @@ namespace LemonadeStand
             else
             {
                 clouds = false;
-                skyCondition += "Clear Skies ";
+                skyCondition += "Clear Skies Sunny ";
             }
             chanceOfRain = randomNum2 / 100;
             if(chanceOfRain > 0.5 && clouds)

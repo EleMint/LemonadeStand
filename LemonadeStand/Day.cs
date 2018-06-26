@@ -12,6 +12,7 @@ namespace LemonadeStand
         readonly Weather weather;
         readonly Customer customer;
         Random random = new Random();
+        public int numberOfCustomersTotal;
         // Constructor
         public Day(Player player)
         {
@@ -26,6 +27,7 @@ namespace LemonadeStand
             {
                 player.lemons -= (player.lemons / 10);
             }
+            numberOfCustomersTotal = random.Next(50, 125);
             
         }
         public double CalculateCustomerBuyRate()
@@ -54,6 +56,19 @@ namespace LemonadeStand
         {
             Console.WriteLine("\r\nCurrent Weather Forcast:\r\nForcasted Temperature - {0}\r\nForcasted Sky Condition - {1}", weather.temperature, weather.skyCondition);
 
+        }
+        public void EndOfDayTotal(Player player, UserInterface userInterface)
+        {
+            player.moneyDayEnd = player.money;
+            if (player.moneyDayBegin > player.moneyDayEnd)
+            {
+                Console.WriteLine("\r\nToday You Lost: ${0}", (player.moneyDayBegin - player.moneyDayEnd));
+            }
+            else
+            {
+                Console.WriteLine("\r\nToday You Made: ${0}", (player.moneyDayEnd - player.moneyDayBegin));
+            }
+            userInterface.ShowCustomerPurchase(customer, player);
         }
     }
 }

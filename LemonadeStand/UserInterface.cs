@@ -63,17 +63,18 @@ namespace LemonadeStand
             int inputLemons = AskForRecipeLemons(player);
             int inputSugar = AskForRecipeSugar(player);
             int inputIce = AskForRecipeIce(player);
-            player.InputRecipe(inputLemons, inputSugar, inputIce);
+            double inputPPC = AskForRecipePPC(player);
+            player.InputRecipe(inputLemons, inputSugar, inputIce, inputPPC);
             
         }
         public int AskForRecipeLemons(Player player)
         {
-            Console.WriteLine("\r\nTime To Input Your Lemonade Recipe.\r\nHow Many Lemons Would You Like To Use? You Currently Have: {0}", player.lemons);
+            Console.WriteLine("\r\nTime To Input Your Lemonade Recipe:\r\nHow Many Lemons Would You Like To Use? You Currently Have: {0}", player.lemons);
             int inputLemons = int.Parse(Console.ReadLine().Trim());
             while (inputLemons > player.lemons)
             {
-                Console.WriteLine("You Do Not Have {0} Lemons, Please Enter An Amount Less Than Or Equal To How Many Lemons You Currently Have.", inputLemons);
-                Console.WriteLine("How Many Lemons Would You Like To Use?");
+                Console.WriteLine("\r\nYou Do Not Have {0} Lemons, Please Enter An Amount Less Than Or Equal To How Many Lemons You Currently Have.", inputLemons);
+                Console.WriteLine("\r\nHow Many Lemons Would You Like To Use?");
                 inputLemons = int.Parse(Console.ReadLine().Trim());
             }
             return inputLemons;
@@ -92,15 +93,27 @@ namespace LemonadeStand
         }
         public int AskForRecipeIce(Player player)
         {
-            Console.WriteLine("\r\nHow Many Ice Cubes Would You Like To Use Per Cup? YOu Currently Have: {0}", player.ice);
+            Console.WriteLine("\r\nHow Many Ice Cubes Would You Like To Use Per Cup? You Currently Have: {0}", player.ice);
             int inputIce = int.Parse(Console.ReadLine().Trim());
             while (inputIce > player.ice)
             {
-                Console.WriteLine("You Do Not Have {0} Ice, Please Enter An Amount Less Than Or Equal To How Much Ice You Currently Have.", inputIce);
-                Console.WriteLine("How Much Ice Would You Like To Use?");
+                Console.WriteLine("\r\nYou Do Not Have {0} Ice, Please Enter An Amount Less Than Or Equal To How Much Ice You Currently Have.", inputIce);
+                Console.WriteLine("\r\nHow Much Ice Would You Like To Use?");
                 inputIce = int.Parse(Console.ReadLine().Trim());
             }
             return inputIce;
+        }
+        public double AskForRecipePPC(Player player)
+        {
+            Console.WriteLine("\r\nHow Much Do You Want To Sell Each Cup Of Lemonade For?");
+            double inputPPC = double.Parse(Console.ReadLine().Trim());
+            while (inputPPC <= 0)
+            {
+                Console.WriteLine("\r\nYour Price Per Cup Needs To Be Greater Than '0'");
+                Console.WriteLine("\r\nHow Much Do You Want To Sell Each Cup Of Lemonade For?");
+                inputPPC = double.Parse(Console.ReadLine().Trim());
+            }
+            return inputPPC;
         }
 
         public void ShowCurrentDay(int currentDay, Player player)
@@ -108,17 +121,9 @@ namespace LemonadeStand
             Console.WriteLine("\r\nBeginning of Day {0}", currentDay);
         }
 
-        public void ShowEndOfDayTotal(Player player)
+        public void ShowEndOfDayTotal(Day day, Player player, UserInterface userInterface)
         {
-            player.moneyDayEnd = player.money;
-            if(player.moneyDayBegin > player.moneyDayEnd)
-            {
-                Console.WriteLine("\r\nToday You Lost: ${0}", (player.moneyDayBegin - player.moneyDayEnd));
-            }
-            else
-            {
-                Console.WriteLine("\r\nToday You Made: ${0}", (player.moneyDayEnd - player.moneyDayBegin));
-            }
+            day.EndOfDayTotal(player, userInterface);
         }
 
         public void AskToPlayAgain()
@@ -141,6 +146,11 @@ namespace LemonadeStand
                     AskToPlayAgain();
                     break;
             }
+        }
+        public void ShowCustomerPurchase(Customer customer, Player player)
+        {
+            Recipe recipe = player.GetRecipe();
+            Console.WriteLine("{0} Customers Bought Your Lemonade For A Total Of ${1}", customer.numberOfCustomerBuying, (customer.numberOfCustomerBuying * recipe.pricePerCup));
         }
     }
 }

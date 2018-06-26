@@ -49,7 +49,12 @@ namespace LemonadeStand
             }
             while (userInput == "yes");
             userInterface.AskForRecipe(player);
-            userInterface.ShowEndOfDayTotal(player);
+            
+            //Run Customer Buying Lemonade
+            //Reduce Player Stock of Items
+
+            userInterface.ShowEndOfDayTotal(newDay, player, userInterface);
+            
         }
         public string AskToBuyProduct()
         {

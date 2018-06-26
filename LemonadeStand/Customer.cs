@@ -10,6 +10,7 @@ namespace LemonadeStand
     {
         // Member Variables (HAS A)
         private double buyRate;
+        public int numberOfCustomerBuying;
         // Constructor
         public Customer(double buyRate)
         {

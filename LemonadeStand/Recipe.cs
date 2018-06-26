@@ -9,15 +9,17 @@ namespace LemonadeStand
     class Recipe
     {
         // Member Variables (HAS A)
-        int lemons;
-        int sugar;
-        int ice;
+        public int lemons;
+        public int sugar;
+        public int ice;
+        public double pricePerCup;
         // Constructor
-        public Recipe(int lemons, int sugar, int ice)
+        public Recipe(int lemons, int sugar, int ice, double pricePerCup)
         {
             this.lemons = lemons;
             this.sugar = sugar;
             this.ice = ice;
+            this.pricePerCup = pricePerCup;
         }
         // Member Methods (CAN DO)
         public void CalculateDailyItemUsage(Player player, int lemons, int sugar, int ice)
