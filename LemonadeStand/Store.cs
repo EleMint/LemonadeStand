@@ -74,7 +74,7 @@ namespace LemonadeStand
                     bool isValid4 = PricePerItem(amount4, player);
                     if (isValid4)
                     {
-                        player.sugar += amount4;
+                        player.ice += amount4;
                     }
                     else
                     {

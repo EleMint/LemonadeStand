@@ -38,7 +38,7 @@ namespace LemonadeStand
         public string AskToBuyProduct(Player player, Store store)
         {
             Console.WriteLine("\r\nIs There Anything You'd Like To Buy?");
-            string userAnswer = Console.ReadLine().ToLower();
+            string userAnswer = Console.ReadLine().ToLower().Trim();
             switch(userAnswer)
             {
                 case "yes":
@@ -57,12 +57,18 @@ namespace LemonadeStand
         }
         public void ShowCurrentDay(int currentDay, Player player)
         {
-            Console.WriteLine("\r\nDay: {0}", currentDay);
-            player.ShowInventory();
+            Console.WriteLine("\r\nBeginning of Day {0}", currentDay);
         }
-        public void ShowEndOfDayTotal()
+        public void ShowEndOfDayTotal(Player player)
         {
-
+            if(player.moneyDayBegin > player.moneyDayEnd)
+            {
+                Console.WriteLine("Your Daily Loss Is: {0}", player.moneyDayBegin - player.moneyDayEnd);
+            }
+            else
+            {
+                Console.WriteLine("Your Daily Profit Is: {0}", player.moneyDayEnd - player.moneyDayBegin);
+            }
         }
     }
 }

@@ -9,7 +9,7 @@ namespace LemonadeStand
     class Game
     {
         // Member Variables (HAS A)
-        public Player player;
+        Player player;
         UserInterface userInterface;
         Store store;
         public int gameLength;
@@ -32,15 +32,16 @@ namespace LemonadeStand
             {
                 currentDay++;
                 userInterface.ShowCurrentDay(currentDay,player);
-                NewDay();
+                NewDay(player);
                 string userInput;
                 do
                 {
+                    player.ShowInventory();
                     userInput = userInterface.AskToBuyProduct(player, store);
                 }
                 while (userInput == "yes");
 
-                userInterface.ShowEndOfDayTotal();
+                userInterface.ShowEndOfDayTotal(player);
             }
             while (currentDay < gameLength);
             Console.WriteLine("end of program");
@@ -48,9 +49,9 @@ namespace LemonadeStand
             Environment.Exit(0);
 
         }
-        public void NewDay()
+        public void NewDay(Player player)
         {
-            Day newDay = new Day();
+            Day newDay = new Day(player);
         }
     }
 }
