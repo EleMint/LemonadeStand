@@ -21,8 +21,7 @@ namespace LemonadeStand
             Random random = new Random();
             double randomNum = random.Next(1, 100);
             double randomNum2 = random.Next(1, 100);
-            int randomTemp = random.Next(65, 95);
-            temperature = randomTemp;
+            temperature = random.Next(65, 100);
             chanceOfClouds = randomNum / 100;
             if(chanceOfClouds > 0.5)
             {
@@ -47,6 +46,6 @@ namespace LemonadeStand
             }
             
         }
-        
+              
     }
 }

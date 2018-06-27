@@ -12,6 +12,7 @@ namespace LemonadeStand
         Player player;
         UserInterface userInterface;
         Store store;
+        Day newDay;
         public int gameLength;
         public int currentDay;
         // Constructor
@@ -30,18 +31,17 @@ namespace LemonadeStand
             gameLength = userInterface.AskGameLength();
             do
             {
+                currentDay++;
+                userInterface.ShowCurrentDay(currentDay, player);
                 RunDaily();
             }
             while (currentDay < gameLength);
+            userInterface.ShowEndOfGameTotal(player);
             userInterface.AskToPlayAgain();
 
         }
         public void RunDaily()
         {
-            currentDay++;
-            userInterface.ShowCurrentDay(currentDay, player);
-            Day newDay = new Day(player);
-            newDay.DailyWeatherReport();
             string userInput;
             do
             {
@@ -49,12 +49,12 @@ namespace LemonadeStand
             }
             while (userInput == "yes");
             userInterface.AskForRecipe(player);
+            newDay = new Day(player);
             
-            //Run Customer Buying Lemonade
-            //Reduce Player Stock of Items
+            //TODO: Run Customer Buying Lemonade
+            //TODO: Reduce Player Stock of Items
 
             userInterface.ShowEndOfDayTotal(newDay, player, userInterface);
-            
         }
         public string AskToBuyProduct()
         {

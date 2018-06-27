@@ -115,9 +115,6 @@ namespace LemonadeStand
                 return true;
             }
         }
-        public void IncreasePlayerMoney(double amount, Player player)
-        {
-            player.money += amount;
-        }
+        
     }
 }

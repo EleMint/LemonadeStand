@@ -12,57 +12,29 @@ namespace LemonadeStand
         readonly Weather weather;
         readonly Customer customer;
         Random random = new Random();
-        public int numberOfCustomersTotal;
+        
         // Constructor
         public Day(Player player)
         {
             player.moneyDayBegin = player.money;
             player.moneyDayEnd = 0;
             player.ice = 0;
-            weather = new Weather();
-            double customerBuyRate = random.Next(1, 100);
-            customer = new Customer(CalculateCustomerBuyRate());
-            int randomNum = random.Next(1, 7);
-            if(randomNum == 3)
-            {
-                player.lemons -= (player.lemons / 10);
-            }
-            numberOfCustomersTotal = random.Next(50, 125);
             
+            weather = new Weather();
+            customer = new Customer( weather, player);
         }
-        public double CalculateCustomerBuyRate()
-        {
-            double buyRate = 0;
-            double result;
-
-            buyRate += weather.temperature / 1.5;
-            if(weather.clouds)
-            {
-                buyRate -= 5;
-            }
-            if(weather.rain)
-            {
-                buyRate -= 10;
-            }
-            //if()
-            {
-
-            }
-            result = buyRate;
-            return result;
-
-        }
+        
         public void DailyWeatherReport()
         {
             Console.WriteLine("\r\nCurrent Weather Forcast:\r\nForcasted Temperature - {0}\r\nForcasted Sky Condition - {1}", weather.temperature, weather.skyCondition);
 
         }
-        public void EndOfDayTotal(Player player, UserInterface userInterface)
+        public void EndOfDayTotal(Day day, Player player, UserInterface userInterface)
         {
             player.moneyDayEnd = player.money;
             if (player.moneyDayBegin > player.moneyDayEnd)
             {
-                Console.WriteLine("\r\nToday You Lost: ${0}", (player.moneyDayBegin - player.moneyDayEnd));
+                Console.WriteLine("\r\nToday You Lost: ${0}", Math.Round(player.moneyDayBegin - player.moneyDayEnd));
             }
             else
             {

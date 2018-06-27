@@ -9,17 +9,37 @@ namespace LemonadeStand
     class Customer
     {
         // Member Variables (HAS A)
-        private double buyRate;
-        public int numberOfCustomerBuying;
+        public int numberOfCustomersTotal;
+        public double numberOfCustomerBuying;
+        public double buyRate;
         // Constructor
-        public Customer(double buyRate)
+        public Customer(Weather weather, Player player)
         {
-            this.buyRate = buyRate;
+            Random random = new Random();
+            numberOfCustomersTotal = random.Next(50, 125);
+            buyRate = CalculateBuyRate(weather, player.GetRecipe());
+            this.numberOfCustomerBuying = numberOfCustomersTotal * buyRate;
+            BuyLemonade(player.GetRecipe(), player);
         }
         // Member Methods (CAN DO)
-        public void BuyLemonade()
+        public double CalculateBuyRate(Weather weather, Recipe recipe)
         {
-            
+            buyRate = 2 + (weather.temperature / 100) - (weather.chanceOfRain + weather.chanceOfClouds);
+            buyRate *= recipe.pricePerCup;
+
+            return buyRate;
         }
+        public void BuyLemonade(Recipe recipe, Player player)
+        {
+            if(recipe.cupsMade > numberOfCustomerBuying)
+            {
+                player.money += numberOfCustomerBuying * recipe.pricePerCup;
+            }
+            else if(numberOfCustomerBuying > recipe.cupsMade)
+            {
+                player.money += recipe.cupsMade * recipe.pricePerCup;
+            }
+        }
+        
     }
 }

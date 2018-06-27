@@ -28,17 +28,15 @@ namespace LemonadeStand
 
         public int AskGameLength()
         {
-            Console.WriteLine("\r\nHow Many Days Would You Like To Play For? (7, 14, or 21)");
-            int gameLength = int.Parse(Console.ReadLine().Trim());
-            if (gameLength == 7 || gameLength == 14 || gameLength == 21)
+            Console.WriteLine("\r\nHow Many Days Would You Like To Play For? ('7' (Default), '14', or '21')");
+            string gameLength = Console.ReadLine().Trim().ToLower();
+            if (gameLength == "7" || gameLength == "14" || gameLength == "21")
             {
-                return gameLength;
+                return int.Parse(gameLength);
             }
-            else
-            {
-                AskGameLength();
-            }
+            
             return 7;
+
         }
 
         public string AskToBuyProduct(Player player, Store store)
@@ -64,7 +62,7 @@ namespace LemonadeStand
             int inputSugar = AskForRecipeSugar(player);
             int inputIce = AskForRecipeIce(player);
             double inputPPC = AskForRecipePPC(player);
-            player.InputRecipe(inputLemons, inputSugar, inputIce, inputPPC);
+            player.InputRecipe(player, inputLemons, inputSugar, inputIce, inputPPC);
             
         }
         public int AskForRecipeLemons(Player player)
@@ -123,7 +121,22 @@ namespace LemonadeStand
 
         public void ShowEndOfDayTotal(Day day, Player player, UserInterface userInterface)
         {
-            day.EndOfDayTotal(player, userInterface);
+            day.EndOfDayTotal(day, player, userInterface);
+        }
+        public void ShowEndOfGameTotal(Player player)
+        {
+            if (player.money > 20)
+            {
+                Console.WriteLine("\r\nIn Total, You Made: ${0}", (player.money - 20));
+            }
+            else if(player.money == 20)
+            {
+                Console.WriteLine("\r\nIn Total, You Broke Even");
+            }
+            else if(player.money < 20)
+            {
+                Console.WriteLine("\r\nIn Total, You Lost: ${0}", (20 - player.money));
+            }
         }
 
         public void AskToPlayAgain()
@@ -150,7 +163,15 @@ namespace LemonadeStand
         public void ShowCustomerPurchase(Customer customer, Player player)
         {
             Recipe recipe = player.GetRecipe();
-            Console.WriteLine("{0} Customers Bought Your Lemonade For A Total Of ${1}", customer.numberOfCustomerBuying, (customer.numberOfCustomerBuying * recipe.pricePerCup));
+            if(customer.numberOfCustomerBuying >= recipe.cupsMade)
+            {
+                Console.WriteLine("{0} Customers Bought Your Lemonade For A Total Of ${1}", recipe.cupsMade, recipe.pricePerCup);
+            }
+            else
+            {
+                Console.WriteLine("{0} Customers Bought Your Lemonade For A Total Of ${1}", Math.Floor(customer.numberOfCustomerBuying), recipe.pricePerCup);
+            }
+            
         }
     }
 }
